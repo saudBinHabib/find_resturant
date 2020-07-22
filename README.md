@@ -8,10 +8,12 @@ Install
 
 ::
     git clone git@github.com:saudBinHabib/find_resturant.git
+    vi ~/.bashrc
+    # add this line in the end of this file.
     export LOCU_ACCESS_TOKEN=d2e36f1a04204eee891140a7e61387133cd51b1d
     source ~/.bashrc
     cd find_resturant
-    pip install .
+    pip install -e .
 
 
 ~~~~~~~~~~~~~~~~
