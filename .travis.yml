@@ -1,0 +1,42 @@
+sudo: true
+
+dist: xenial
+
+language: python
+python:
+  - 3.6.2
+
+env:
+  global:
+    - DEBIAN_FRONTEND=noninteractive
+    - PYTHONASYNCIODEBUG=1
+
+before_install:
+  - sudo service postgresql stop
+
+  - pip install -r requirements/dev.txt
+
+jobs:
+  include:
+  - stage: lint
+
+    script:
+      - make lint
+
+  - stage: test
+
+    install:
+      - pip install .
+
+    script:
+      - make test
+
+    after_success:
+     - pip insall codecov
+     - codecov
+
+cache: pip
+
+notifications:
+  email: false
+
